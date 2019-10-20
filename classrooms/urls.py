@@ -4,7 +4,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from classes import views
-#from classroomapi import views
+#from classroomapi import views as views_api
 from classroomapi.views import *
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
