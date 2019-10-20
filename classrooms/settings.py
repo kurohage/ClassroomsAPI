@@ -25,7 +25,7 @@ SECRET_KEY = '8nh94bkm13c^o_o4ou8hb8$c)qpet%xb7h^lm8nlxs)&%l47vg'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'classes',
 
     'crispy_forms',
+    'rest_framework',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

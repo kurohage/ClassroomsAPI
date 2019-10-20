@@ -1,8 +1,42 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from rest_framework.generics import ListAPIView, RetrieveAPIView, RetrieveUpdateAPIView, DestroyAPIView, CreateAPIView
 
 from .models import Classroom
 from .forms import ClassroomForm
+from .serializers import ClassroomSerializer, ClassroomDetailsSerializer, UpdateClassroomSerializer
+
+
+class ClassroomList(ListAPIView):
+	queryset = Classroom.objects.all()
+	serializer_class = ClassroomSerializer
+
+class ClassroomDetails(RetrieveAPIView):
+	queryset = Classroom.objects.all()
+	serializer_class = ClassroomDetailsSerializer
+	lookup_field = 'id'
+	lookup_url_kwarg = 'classroom_id'
+
+class ClassroomUpdate(RetrieveUpdateAPIView):
+	queryset = Classroom.objects.all()
+	serializer_class = UpdateClassroomSerializer
+	lookup_field = 'id'
+	lookup_url_kwarg = 'classroom_id'
+
+
+class ClassroomDelete(DestroyAPIView):
+	queryset = Classroom.objects.all()
+	lookup_field = 'id'
+	lookup_url_kwarg = 'classroom_id'
+
+class ClassroomCreate(CreateAPIView):
+	serializer_class = UpdateClassroomSerializer
+
+	def perform_create(self, serializer):
+			classroom_id = self.kwargs.get("classroom_id")
+			classroom_obj = Classroom.objects.get(id=classroom_id)
+			serializer.save(teacher=self.request.user, classroom=classroom_obj)
+
 
 def classroom_list(request):
 	classrooms = Classroom.objects.all()
