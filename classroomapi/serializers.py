@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Classroom
+from classes.models import Classroom
 
 
 class ClassroomSerializer(serializers.ModelSerializer):
@@ -12,7 +12,7 @@ class ClassroomSerializer(serializers.ModelSerializer):
 class ClassroomDetailsSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Classroom
-		fields = ['name', 'teahcer', 'year', 'subject', 'id']
+		fields = ['name', 'teacher', 'year', 'subject', 'id']
 
 
 class UpdateClassroomSerializer(serializers.ModelSerializer):
